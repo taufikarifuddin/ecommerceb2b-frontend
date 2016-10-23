@@ -1,0 +1,33 @@
+<div ng-controller="ProductCategoryRemove">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Hapus Produk Kategori</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <th>Nama Kategori</th>
+                <td>{{data.product_category_name}}</td>                
+            </tr>
+            <tr>
+                <th>Icon Kategori</th>
+                <td><i class="fa {{ data.product_category_icon }}"></i> ( {{data.product_category_icon}} )</td>                
+            </tr>
+            <tr>
+                <th>Deskripsi Kategori</th>
+                <td>{{data.product_category_desc}}</td>                
+            </tr>            
+            <tr>
+                <td colspan="2">
+                    <button class="btn btn-flat btn-danger" ng-click="remove(data.product_category_id)">
+                        <i class="fa fa-trash" />
+                    </button>
+                </td>
+            </tr>
+            </tbody></table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>

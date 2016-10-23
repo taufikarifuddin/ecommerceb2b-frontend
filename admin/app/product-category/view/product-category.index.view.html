@@ -1,0 +1,36 @@
+<button class="btn btn-success" style="margin-bottom:10px;" update-btn template="template.add">
+    <i  class="fa fa-plus" /> Tambah Product Category
+</button>
+<table id="data-table-custom-default" class="table table-bordered table-hover text-center">
+    <thead>
+        <tr>
+            <th>Nama Kategori</th>
+            <th>Icon Kategori</th>
+            <th>Deskripsi Kategori</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+         <tr ng-repeat="detailCategory in listCategory">
+            <td>{{ detailCategory.product_category_name }}</td>
+            <td><i class="fa {{ detailCategory.product_category_icon }}" /></td>            
+            <td>{{ detailCategory.product_category_desc }}</td>            
+            <td>
+                <button class="btn btn-flat btn-primary" update-btn template="template.edit" id-elem="detailCategory.product_category_id">
+                    <i class="fa fa-pencil" />
+                </button>
+                <button class="btn btn-flat btn-danger" update-btn template="template.remove" id-elem="detailCategory.product_category_id">
+                    <i class="fa fa-trash" />                    
+                </button>                
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Nama Kategori</th>
+            <th>Icon Kategori</th>
+            <th>Deskripsi Kategori</th>
+            <th>Aksi</th>
+        </tr>
+    </tfoot>
+</table>

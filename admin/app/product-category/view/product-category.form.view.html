@@ -1,0 +1,39 @@
+   <div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            {{ form.product_category_id != 0 ? "Perbaharui" : "Buat" }} Produk Kategori
+        </h3>
+    </div> 
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form role="form" ng-submit="submit(form)">
+        <div class="box-body">
+        <div class="form-group">
+            <label for="product_category_name">Nama Kategori</label>
+            <input type="text" ng-model="form.product_category_name" class="form-control" id="product_category_name" placeholder="Nama Kategori">
+            <input type="hidden" ng-model="form.product_category_id" />
+            <error-block message="{{form.error.product_category_name}}"></error-block>            
+        </div>
+        <div class="form-group">
+            <label for="product_category_icon">Icon Kategori ( <i class="fa {{form.product_category_icon}}"/> ) </label>
+            <input type="text" ng-model="form.product_category_icon" class="form-control" id="product_category_icon" placeholder="Icon Kategori">            
+            <error-block message="{{form.error.product_category_icon}}" ></error-block>            
+        </div>
+        <div class="form-group">
+            <label for="product_category_desc">Deskripsi Kategori</label>
+            <textarea ng-model="form.product_category_desc" placeholder="Deskripsi Kategori" class="form-control">{{form.product_category_desc}}</textarea>
+            <error-block message="{{form.error.product_category_desc}}"></error-block>            
+        </div>
+        </div>
+        <!-- /.box-body -->
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-flat btn-success">
+                <i class="fa fa-check" />
+            </button>
+            <button type="reset" class="btn btn-flat btn-danger">
+                <i class="fa fa-remove" />
+            </button>        
+        </div>
+    </form>
+    </div>

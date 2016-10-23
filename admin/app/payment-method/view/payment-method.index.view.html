@@ -1,0 +1,33 @@
+<button class="btn btn-success" style="margin-bottom:10px;" update-btn template="template.add">
+    <i  class="fa fa-plus" /> Tambah Payment Method
+</button>
+<table id="data-table-custom-default" class="table table-bordered table-hover text-center">
+    <thead>
+        <tr>
+            <th>Nama Pembayaran</th>
+            <th>Deskripsi Pembayaran</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+         <tr ng-repeat="detailMethod in listMethod">
+            <td>{{ detailMethod.payment_method_name }}</td>
+            <td>{{ detailMethod.payment_method_desc }}</td>            
+            <td>
+                <button class="btn btn-flat btn-primary" update-btn template="template.edit" id-elem="detailMethod.payment_method_id">
+                    <i class="fa fa-pencil" />
+                </button>
+                <button class="btn btn-flat btn-danger" update-btn template="template.remove" id-elem="detailMethod.payment_method_id">
+                    <i class="fa fa-trash" />                    
+                </button>                
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Nama Pembayaran</th>
+            <th>Deskripsi Pembayaran</th>
+            <th>Aksi</th>            
+        </tr>
+    </tfoot>
+</table>
