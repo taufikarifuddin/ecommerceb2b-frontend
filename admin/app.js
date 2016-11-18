@@ -1,4 +1,4 @@
-var appAngular = angular.module('app',['ngRoute','ngCookies'])
+var appAngular = angular.module('app',['ngRoute','ngCookies','ngResource'])
     .config(config)
     .run(run);
 
@@ -21,26 +21,34 @@ function config($routeProvider, $locationProvider,$httpProvider){
             controller : 'PaymentMethodController',
             templateUrl : 'app/payment-method/view/payment-method.index.view.html'            
         })
+        .when('/product',{
+            controller : 'ProductController',
+            templateUrl : 'app/view/product/product.index.view.html'
+        })
         .otherwise( { redirectTo : '/login' } );
 
-    $httpProvider.interceptors.push(function($rootScope){
-        return {
-            'request' : function(config){
-                if( !angular.equals($rootScope.globals,{}) ){
-                    config.headers['token'] = $rootScope.globals.currentUser.token ;
-                }
+//        $httpProvider.defaults.headers.post['token'] = $rootScope.globals.currentUser.token;
 
-                for( var k in config.data ){
-                    if( typeof config.data[k] === 'string' )
-                        if( config.data[k].trim() == "" ){
-                            delete config.data[k];
-                        }
-                }
+        $httpProvider.interceptors.push(function($rootScope){
+            return {
+                'request' : function(config){
 
-                return config;
-            }
-        };
-    })
+                    if( !angular.equals($rootScope.globals,{}) ){
+                        config.headers['token'] = $rootScope.globals.currentUser.token ;                    
+                        config.headers['Access-Control-Allow-Origin'] = "*";
+                    }
+
+                    for( var k in config.data ){
+                        if( typeof config.data[k] === 'string' )
+                            if( config.data[k].trim() == "" ){
+                                delete config.data[k];
+                            }
+                    }
+
+                    return config;
+                }
+            };
+        })
 }
 
 appAngular.factory('ModalFactory',function(){
@@ -122,15 +130,16 @@ function run(LoaderFactory,$rootScope, $location, $cookieStore, $http,Authentica
            $location.path('/login');
         }
 
-        if( !$rootScope.isLoginPage && !angular.equals($rootScope.globals,{}) ){
-            LoaderFactory.showLoader(); 
-            var url = URL+"/user/token?token="+$rootScope.globals.currentUser.token;
-            $http.post(url).success(function(response){
-                if( !response ){
-                    $location.path('/login');
-                }
-                LoaderFactory.hideLoader(); 
-            })
-        }
+        // if( !$rootScope.isLoginPage && !angular.equals($rootScope.globals,{}) ){
+        //     LoaderFactory.showLoader(); 
+        //     var url = URL+"/user/token?token="+$rootScope.globals.currentUser.token;
+
+        //     $http.post(url).success(function(response){
+        //         if( !response ){
+        //             $location.path('/login');
+        //         }
+        //         LoaderFactory.hideLoader(); 
+        //     })
+        // }
     })
 }

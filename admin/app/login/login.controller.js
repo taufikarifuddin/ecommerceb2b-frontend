@@ -8,7 +8,7 @@ appAngular.controller('LoginController',function($location,$scope,$rootScope,Aut
     $scope.submit = function(){
         $scope.loginLoading = true;        
         AuthenticationService.login($scope.form.email,$scope.form.password,
-            URL+"/admin/login",function(response){
+            URL+"/api/admin/login",function(response){
                 var data = response.baseResponse;
                 if( !data.error ){
                     AuthenticationService.setCredentials(data);

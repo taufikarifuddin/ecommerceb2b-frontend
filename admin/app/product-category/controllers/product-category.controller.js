@@ -107,25 +107,25 @@ appAngular.service('ProductCategoryService', function (LoaderFactory,$http) {
     return productCategoryService;
 
     function getCategory(callback) {
-        $http.get(URL + "/productCategory/getAll", {}).success(function (response) {
+        $http.get(URL + "/pub/api/productCategory/getAll", {}).success(function (response) {
             parseData(callback, response);
         })
     }
 
     function updateCategory(data, callback) {
-        $http.post(URL + "/admin/productCategory/update", data).success(function (response) {
+        $http.post(URL + "/api/productCategory/update",data).success(function (response) {            
             callback(response.baseResponse);
         })
     }
 
     function removeCategory(id, callback) {
-        $http.post(URL + "/admin/productCategory/remove?id="+id).success(function (response) {
+        $http.post(URL + "/api/productCategory/remove?id="+id).success(function (response) {
             callback(response.baseResponse);
         })
     }
 
     function getCategoryById(id, callback) {
-        $http.get(URL + "/productCategory/get?id=" + id).success(function (response) {
+        $http.get(URL + "/pub/api/productCategory/get?id=" + id).success(function (response) {
             parseData(callback, response);
         })
     }
