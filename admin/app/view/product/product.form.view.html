@@ -1,0 +1,51 @@
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            {{ form.id != 0 ? "Perbaharui" : "Buat" }} Produk
+        </h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form role="form" ng-submit="submit(form)">
+        <div class="box-body">
+            <div class="form-group">
+                <label for="productName">Nama Produk</label>
+                <input type="text" ng-model="form.productName" class="form-control" id="productName" placeholder="Nama Produk">
+                <input type="hidden" ng-model="form.id" />                
+                <!--<error-block message="{{form.error.product_category_name}}"></error-block>            -->
+            </div>
+            <div class="form-group">
+                <label for="productCode">Kode Produk</label>
+                <input type="productCode" ng-model="form.productCode" class="form-control" id="productCode" placeholder="Kode Produk">
+                <!--<error-block message="{{form.error.product_category_name}}"></error-block>            -->
+            </div>
+            <div class="form-group">
+                <label for="price">Harga Barang</label>
+                <input type="number" ng-model="form.price" class="form-control" id="price" placeholder="Harga Barang">
+                <!--<error-block message="{{form.error.product_category_name}}"></error-block>            -->
+            </div>            
+            <div class="form-group">               
+                <label for="productCategory">Kategori Produk</label>
+                <select id="productCategory" ng-model="form.productCategory" class="form-control"
+                    ng-options="detailCategory.product_category_id as detailCategory.product_category_name                    
+                    for detailCategory in listCategory track by detailCategory.product_category_id"
+                >
+                </select>
+                <!--<error-block message="{{form.error.product_category_name}}"></error-block>            -->
+            </div>      
+            <div class="form-group">   
+                <label for="desc">Deskripsi Produk</label>
+                <textarea id="desc" class="form-control" ng-model="form.desc"></textarea>
+                <!--<error-block message="{{form.error.product_category_name}}"></error-block>            -->
+            </div>                  
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-flat btn-success">
+                <i class="fa fa-check" />
+            </button>
+            <button type="reset" class="btn btn-flat btn-danger">
+                <i class="fa fa-remove" />
+            </button>        
+        </div>        
+    </form>
+</div>

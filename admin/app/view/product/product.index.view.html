@@ -1,1 +1,39 @@
-testing algi gan
+<button class="btn btn-success" style="margin-bottom:10px;" update-btn template="template.add">
+    <i  class="fa fa-plus" /> Tambah Produk Baru
+</button>
+<table id="data-table-custom-default" class="table table-bordered table-hover text-center">
+    <thead>
+        <tr>
+            <th>Nama Produk</th>
+            <th>Kategori Produk</th>
+            <th>Harga Produk</th>            
+            <th>Kode Produk</th>
+            <th>Aksi</th>            
+        </tr>
+    </thead>
+    <tbody>
+         <tr ng-repeat="detailProduct in listProduct">
+            <td style="width:20%">{{ detailProduct.productName }}</td>
+            <td style="width:20%">{{ detailProduct.productCategory }}</td>            
+            <td style="width:20%">{{ detailProduct.price }}</td>    
+            <td style="width:10%">{{ detailProduct.productCode }}</td>        
+            <td>
+                <button class="btn btn-flat btn-primary" update-btn template="template.edit" id-elem="detailProduct.id">
+                    <i class="fa fa-pencil" />
+                </button>
+                <button class="btn btn-flat btn-danger" update-btn template="template.remove" id-elem="detailProduct.id">
+                    <i class="fa fa-trash" />                    
+                </button>                
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Nama Produk</th>
+            <th>Kategori Produk</th>
+            <th>Harga Produk</th>            
+            <th>Kode Produk</th>
+            <th>Aksi</th>                        
+        </tr>
+    </tfoot>
+</table>

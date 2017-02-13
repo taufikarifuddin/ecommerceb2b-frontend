@@ -38,6 +38,8 @@ function config($routeProvider, $locationProvider,$httpProvider){
                         config.headers['Access-Control-Allow-Origin'] = "*";
                     }
 
+                    config.headers['Content-Type'] = "application/json";
+
                     for( var k in config.data ){
                         if( typeof config.data[k] === 'string' )
                             if( config.data[k].trim() == "" ){
@@ -97,18 +99,39 @@ appAngular
         restrict : 'A',
         scope : {
             'template' : '=template',
-            'id' : '=idElem'
+            'id' : '=idElem',
+            'type' : '=typeBtn'
         },
         link : function($scope,$elem,$attrs){
             $elem.on('click',function(){
                 $scope.$apply(function(){
-                    $rootScope.modalTemplate = $scope.template;
-                    ModalFactory.showModal();
+                    $rootScope.modalTemplate = $scope.template;             
+
+                    if( typeof $scope.id === 'undefined'){
+                        ModalFactory.showModal();
+                    }       
                     if( typeof $scope.id != 'undefined' ){
                         $timeout(function(){                            
                             $rootScope.$broadcast(ID_BROADCAST,$scope.id);                    
                         });
                     }
+                })
+            })
+        }
+    };
+})
+
+appAngular.directive('uploadFile',function($parse){
+    return {
+        restrict : 'A',
+        link : function($scope,$elem,$attrs){
+            var model = $parse($attrs.fileModel);
+            var modelAssign = model.assign;
+                      
+            $elem.bind('change',function(){
+                $scope.$apply(function(){
+                    modelAssign($scope,$elem[0].files[0]);
+                   
                 })
             })
         }

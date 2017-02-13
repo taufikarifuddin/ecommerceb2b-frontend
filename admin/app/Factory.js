@@ -3,27 +3,28 @@ appAngular.factory('RestFactory',function($resource){
     var service = {};
 //    service.upload = uploadData;
 
-    var getRestResponse = function(controllerName,data){
-        return $resource("","",{
+    var getRestResponse = function(controllerName){
+       
+        return $resource("",{},{
             'getDetail' : {
-                url : URL+'/'+controllerName+'/get',
+                url : URL+'/pub/api/'+controllerName+'/get',
                 method : 'GET',
-                params : data,                
+                // params : data,                
             },
             'getAll' : {
-                url : URL+'/'+controllerName+'/getAll',
+                url : URL+'/pub/api/'+controllerName+'/getAll',
                 method : 'GET',
-                params : data
+                // params : data
             },
             'update' : {
-                url : URL+'/admin/'+controllerName+'/update',
+                url : URL+'/api/'+controllerName+'/update',
                 method : 'POST',
-                params : data,
+                // params : data,
             },
             'remove' : {
-                url : URL+'/admin/'+controllerName+'/remove',
+                url : URL+'/api/'+controllerName+'/remove',
                 method : 'POST',
-                params : data
+                // params : data
             }
         });
     }    
@@ -33,3 +34,19 @@ appAngular.factory('RestFactory',function($resource){
     return service;
 
 })
+
+
+appAngular.factory('TemplateFactory',function(){
+    var template = {};
+    template.generate = function(name){
+        return {
+            add : 'app/view/'+name+'/'+name+'.add.view.html',
+            edit : 'app/view/'+name+'/'+name+'.edit.view.html',        
+            remove : 'app/view/'+name+'/'+name+'.remove.view.html'  
+        };
+
+    }
+
+    return template;
+})
+
